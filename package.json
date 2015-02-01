@@ -4,7 +4,7 @@
   "description": "A project to demo AngularJS and New York Times API.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/owen107/weilatime.git"
+    "url": "https://github.com/owen107/weilatimes.git"
   },
   "author": "Owen Xu",
   "devDependencies": {
