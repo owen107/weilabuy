@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="small-12 medium-6 large-4 columns" ng-repeat="product in products">
+		<div class="product">
+			<div class="left_info">
+				<div class="img_price">
+					<a ng-href="#/products/{{product.sku}}">
+						<img ng-src="{{product.images.standard}}">
+					</a>
+					<h2>{{product.prices.regular}}</h2>
+					<h3 ng-hide="product.prices.current===product.prices.regular">{{product.prices.current}}</h3>
+				</div>
+			</div>
+
+			<div class="right_info">
+				<div class="details">
+					<a ng-href="#/products/{{product.sku}}">
+					   <h2>{{product.names.title}}</h2>
+				    </a>
+					<p>{{product.descriptions.short}}</p>
+					<h3>{{product.customerReviews.averageScore}} {{product.customerReviews.count}}</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

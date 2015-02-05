@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="weilatimes">
+<html lang="en" ng-app="weilatbuy">
 <head>
   <meta charset="utf-8">
-  <title>Weila Times</title>
+  <title>Weila Buy</title>
   <link rel="stylesheet" href="css/lib/foundation/foundation.min.css"/>
+  <link rel="stylesheet" href="css/lib/jquery-plugins/slick.css"/>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body >
-  <div class="container">
-  	
-    <div ng-view></div>
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
 
-  </div>
+      <div  class="row" ng-include="'views/nav.html'"></div>
+
+    <div class="row" ng-view></div>
+
+    </div><!-- end inner wrap, must go after ALL content -->
+  </div><!-- end offcanvas -->
+
+  <script src="js/lib/angular/angular.min.js"></script>
+  <script src="js/lib/angular/angular-route.min.js"></script>
+  <script src="js/lib/angular/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="js/lib/jquery-plugins/slick.js"></script>
+  <script src="js/lib/foundation/foundation.min.js"></script>
+  <script src="js/lib/foundation/foundation.clearing.js"></script>
   <script src="js/script.js"></script>
   <script src="http://localhost:35729/livereload.js"></script>
+
+  <script>
+    $(document).foundation();
+    $('.responsive_img').slick();
+  </script>
 </body>
 </html>
