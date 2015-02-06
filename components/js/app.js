@@ -1,7 +1,8 @@
 "use strict";
 
 var myApp = angular.module('weilatbuy', 
-  ['weilatbuy.controllers', 'ngRoute'])
+  ['weilatbuy.controllers', 'ngRoute', 
+   'weilabuy.services', 'weilabuy.directives', 'angular-flexslider'])
   .constant('API_KEY', '?apiKey=yexp92nck8b2zjan5qaeeueg');
 
 myApp.config(['$routeProvider', function($routeProvider) {

@@ -1,6 +1,6 @@
 "use strict";
 
-var myApp = angular.module("weilatbuy", [ "weilatbuy.controllers", "ngRoute" ]).constant("API_KEY", "?apiKey=yexp92nck8b2zjan5qaeeueg");
+var myApp = angular.module("weilatbuy", [ "weilatbuy.controllers", "ngRoute", "weilabuy.services", "weilabuy.directives", "angular-flexslider" ]).constant("API_KEY", "?apiKey=yexp92nck8b2zjan5qaeeueg");
 
 myApp.config([ "$routeProvider", function($routeProvider) {
     $routeProvider.when("/:recom", {
@@ -20,30 +20,26 @@ var ctrls = angular.module("weilatbuy.controllers", []);
 
 // ctrls.controller('AppCtrl', function($scope, $http) {
 // });
-ctrls.controller("RecomCtrl", function($scope, $routeParams, $http, API_KEY) {
+ctrls.controller("RecomCtrl", function($scope, $routeParams, Bestbuy) {
     var recom = $routeParams.recom;
-    $http.jsonp("http://api.bestbuy.com/beta/products/" + recom + API_KEY + "&callback=JSON_CALLBACK").then(function(data) {
-        console.log(data);
+    Bestbuy.list(recom).then(function(data) {
         $scope.products = data.data.results;
     });
 });
 
-ctrls.controller("ProductCtrl", function($scope, $routeParams, $http, API_KEY) {
+ctrls.controller("ProductCtrl", function($scope, $routeParams, Bestbuy, MoreResults) {
     var sku = $routeParams.sku;
-    $http.jsonp("http://api.remix.bestbuy.com/v1/products/" + sku + ".json" + API_KEY + "&callback=JSON_CALLBACK").then(function(data) {
-        console.log(data);
+    Bestbuy.product(sku).then(function(data) {
         $scope.product = data.data;
     });
-    $http.jsonp("http://api.remix.bestbuy.com/v1/reviews(sku=" + sku + ")" + API_KEY + "&format=json&pageSize=20&callback=JSON_CALLBACK").then(function(data) {
-        console.log(data);
-        $scope.reviews = data.data.reviews;
+    Bestbuy.reviews(sku).then(function(data) {
+        // $scope.reviews = data.data;
+        $scope.reviews = new MoreResults("reviews", sku, "reviews").loadMore();
     });
-    $http.jsonp("http://api.bestbuy.com/beta/products/" + sku + "/similar" + API_KEY + "&callback=JSON_CALLBACK").then(function(data) {
-        console.log(data);
+    Bestbuy.similarItems(sku).then(function(data) {
         $scope.similarItems = data.data.results;
     });
-    $http.jsonp("http://api.bestbuy.com/beta/products/" + sku + "/alsoViewed" + API_KEY + "&callback=JSON_CALLBACK").then(function(data) {
-        console.log(data);
+    Bestbuy.alsoViewed(sku).then(function(data) {
         $scope.alsoViewed = data.data.results;
     });
     //initiate an array to hold all active tabs
@@ -69,5 +65,68 @@ ctrls.controller("ProductCtrl", function($scope, $routeParams, $http, API_KEY) {
             //if it's not, add it!
             $scope.activeTabs.push(tab);
         }
+    };
+});
+
+"use strict";
+
+var directives = angular.module("weilabuy.directives", []);
+
+directives.directive("itemInfo", function() {
+    return {
+        restrict: "EA",
+        replace: true,
+        templateUrl: "views/item_info.html"
+    };
+});
+
+"use strict";
+
+var services = angular.module("weilabuy.services", []);
+
+services.factory("Bestbuy", function($http, API_KEY) {
+    function load(path, params) {
+        params = params || {};
+        params.callback = "JSON_CALLBACK";
+        return $http.jsonp("http://api." + path + API_KEY, {
+            params: params
+        });
+    }
+    return {
+        list: function(type) {
+            return load("bestbuy.com/beta/products/" + type);
+        },
+        product: function(sku) {
+            return load("remix.bestbuy.com/v1/products/" + sku + ".json");
+        },
+        reviews: function(sku, params) {
+            params = params || {};
+            params.format = "json";
+            return load("remix.bestbuy.com/v1/reviews(sku=" + sku + ")", params);
+        },
+        similarItems: function(sku) {
+            return load("bestbuy.com/beta/products/" + sku + "/similar");
+        },
+        alsoViewed: function(sku) {
+            return load("bestbuy.com/beta/products/" + sku + "/alsoViewed");
+        }
+    };
+});
+
+services.factory("MoreResults", function(Bestbuy) {
+    return function MoreResults(method, arg, collection_name) {
+        var self = this;
+        self.currentPage = 0;
+        var collection = this[collection_name] = [];
+        this.loadMore = function() {
+            Bestbuy[method](arg, {
+                page: parseInt(self.currentPage, 10) + 1
+            }).then(function(data) {
+                self.currentPage = data.data.currentPage;
+                self.totalPages = data.data.totalPages;
+                [].push.apply(collection, data.data[collection_name]);
+            });
+            return this;
+        };
     };
 });

@@ -1,10 +1,10 @@
 {
-  "name": "weilatimes",
+  "name": "weilabuy",
   "version": "0.0.1",
-  "description": "A project to demo AngularJS and New York Times API.",
+  "description": "A project to demo AngularJS and Best Buy API.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/owen107/weilatimes.git"
+    "url": "https://github.com/owen107/weilabuy.git"
   },
   "author": "Owen Xu",
   "devDependencies": {

@@ -5,40 +5,36 @@ var ctrls = angular.module('weilatbuy.controllers', []);
 // ctrls.controller('AppCtrl', function($scope, $http) {
 // });
 
-ctrls.controller('RecomCtrl', function($scope, $routeParams, $http, API_KEY) {
+ctrls.controller('RecomCtrl', function($scope, $routeParams, Bestbuy) {
     
     var recom = $routeParams.recom;
-
-	$http.jsonp('http://api.bestbuy.com/beta/products/' + recom + API_KEY + '&callback=JSON_CALLBACK').then(function(data) {
-		console.log(data);
-		$scope.products = data.data.results;
-	});
+    Bestbuy.list(recom).then(function(data) {
+    	$scope.products = data.data.results;
+    });
 
 });
 
-ctrls.controller('ProductCtrl', function($scope, $routeParams, $http, API_KEY) {
+ctrls.controller('ProductCtrl', function($scope, $routeParams, Bestbuy, MoreResults) {
 	
     var sku = $routeParams.sku;
 
-    $http.jsonp('http://api.remix.bestbuy.com/v1/products/' + sku + '.json' + API_KEY + '&callback=JSON_CALLBACK').then(function(data) {
-		console.log(data);
+    Bestbuy.product(sku).then(function(data) {
 		$scope.product = data.data;
 	});
 
-	$http.jsonp('http://api.remix.bestbuy.com/v1/reviews(sku=' + sku + ')' + API_KEY + '&format=json&pageSize=20&callback=JSON_CALLBACK').then(function(data) {
-		console.log(data);
-		$scope.reviews = data.data.reviews;
+	Bestbuy.reviews(sku).then(function(data) {
+		// $scope.reviews = data.data;
+		$scope.reviews = new MoreResults('reviews', sku, 'reviews').loadMore();
 	});
 
-	$http.jsonp('http://api.bestbuy.com/beta/products/' + sku + '/similar' + API_KEY +'&callback=JSON_CALLBACK').then(function(data) {
-		console.log(data);
+
+	Bestbuy.similarItems(sku).then(function(data) {
 		$scope.similarItems = data.data.results;
 	});
 
-	$http.jsonp('http://api.bestbuy.com/beta/products/' + sku + '/alsoViewed' + API_KEY +'&callback=JSON_CALLBACK').then(function(data) {
-		console.log(data);
+	Bestbuy.alsoViewed(sku).then(function(data) {
 		$scope.alsoViewed = data.data.results;
-	});
+    });
 
 	//initiate an array to hold all active tabs
     $scope.activeTabs = ['tab1'];

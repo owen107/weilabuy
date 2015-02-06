@@ -1,0 +1,7 @@
+<li>	
+	<img ng-src="{{item.images.standard}}" alt="{{item.names.title}}"/>
+	<p>{{item.names.title}}</p>
+	<p ng-hide="item.customerReviews.averageScore===null || item.customerReviews.count===null">{{item.customerReviews.averageScore}} ({{item.customerReviews.count}})</p>
+	<h5 ng-show="item.prices.regular===item.prices.current">{{item.prices.regular | currency}}</h5>
+	<h5 ng-show="item.prices.regular > item.prices.current">Sale: {{item.prices.current | currency}}</h5>
+</li>

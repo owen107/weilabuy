@@ -119,28 +119,18 @@
 
 	<div class="row">
 		<h2>Other Items You May Also Like</h2>
-		<div class="responsive_img">
-		    <div ng-repeat="item in similarItems">
-		    	<img ng-src="{{item.images.standard}}" alt="{{item.names.title}}"/>
-		    	<h3>{{item.names.title}}</h3>
-		    	<p>{{item.customerReviews.averageScore}} ({{item.customerReviews.count}})</p>
-		    	<h5 ng-show="item.prices.regular===item.prices.current">{{item.prices.regular | currency}}</h5>
-		    	<h5 ng-show="item.prices.regular > item.prices.current">Sale: {{item.prices.current | currency}}</h5>
-		    </div>
-		</div>
+		<flex-slider slide="item in similarItems track by $index" animation="slide" animation-loop="false"
+		item-width="210" item-margin="5" min-items="1" max-items="5">
+		    <item-info></item-info>
+		</flex-slider>
 	</div>
 
 	<div class="row">
 		<h2>Customers Who Viewed This Item Also Viewed</h2>
-		<div class="responsive_img">
-		    <div ng-repeat="item in alsoViewed">
-		    	<img ng-src="{{item.images.standard}}" alt="{{item.names.title}}"/>
-		    	<h3>{{item.names.title}}</h3>
-		    	<p>{{item.customerReviews.averageScore}} ({{item.customerReviews.count}})</p>
-		    	<h5 ng-show="item.prices.regular===item.prices.current">{{item.prices.regular | currency}}</h5>
-		    	<h5 ng-show="item.prices.regular > item.prices.current">Sale: {{item.prices.current | currency}}</h5>
-		    </div>
-		</div>
+		<flex-slider slide="item in alsoViewed track by $index" animation="slide" animation-loop="false"
+		item-width="210" item-margin="5" min-items="1" max-items="5">
+		   <div item-info></div>
+		</flex-slider>
 	</div>
 
 	<div class="row">
@@ -150,17 +140,19 @@
 			<h3>{{product.customerReviewAverage}} <span>({{product.customerReviewCount}} reviews)</span></h3>
 		</div>
 		<div class="row">
-			<div class="reviews" ng-repeat="review in reviews">
+			<div class="reviews" ng-repeat="review in reviews.reviews">
 				<h3>{{review.title}}</h3>
 				<div class="user">
 					<img src="img/user_avatar.png" alt="Photo for user" />
 					<p>Customer Rating</p>
 					<h3><span></span> {{review.rating}}</h3>
-					<p ng-repeat="item in review.reviewer">Post by: {{item.name}} on <span>{{review.submissionTime | date:'MM/dd/yyyy h:mma'}}</span></p>
+					<p ng-repeat="item in review.reviewer">Post by: {{item.name}} on <span>{{review.submissionTime | date:'EEEE, MMM d, y, h:mma'}}</span></p>
 					<h5>{{review.comment}}</h5>
 				</div>
 			</div>
-			<button class="button info radius">Load More Reviews</button>			
+			<button ng-show="reviews.totalPages > reviews.currentPage" 
+				    ng-click="reviews.loadMore()"
+				    class="button info radius">Load More Reviews</button>			
 		</div>
 	</div>
 </div>
