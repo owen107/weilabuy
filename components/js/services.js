@@ -2,7 +2,7 @@
 
 var services = angular.module('weilabuy.services', []);
 
-services.factory('Bestbuy', function ($http, API_KEY) {
+services.factory('Bestbuy', function ($http, API_KEY, $q) {
 	
 	function load(path, params) {
 		params = params || {};
@@ -27,6 +27,11 @@ services.factory('Bestbuy', function ($http, API_KEY) {
 		},
 		alsoViewed: function(sku) {
 			return load('bestbuy.com/beta/products/' + sku + '/alsoViewed');
+		},
+		stores: function(zipcode, params) {
+			params = params || {};
+			params.format = 'json';
+			return load('remix.bestbuy.com/v1/stores(area(' + zipcode + ',50))', params);
 		}
 	}
 });
@@ -42,9 +47,9 @@ services.factory('MoreResults', function (Bestbuy) {
         self.currentPage = data.data.currentPage;
         self.totalPages = data.data.totalPages;
         [].push.apply(collection, data.data[collection_name])
-      })
+      });
 
       return this;
     }
   }
-})
+});

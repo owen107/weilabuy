@@ -1,0 +1,75 @@
+<div class="row">
+	<form>
+	  <fieldset>
+	    <legend>Find a Store</legend>
+	      <div class="large-12 columns">
+		      <div class="row collapse">
+		        <div class="small-10 columns">
+		          <input type="text" name="zipCode"
+		            ng-model="zipCode" 
+		            ng-keyup="$event.keyCode == 13 ? searchStore(zipCode) : null" 
+		            placeholder="Enter the ZipCode for Search" />
+		        </div>
+		        <div class="small-2 columns">
+		          <a ng-click="searchStore(zipCode)"class="button postfix">Find</a>
+		        </div>
+		      </div>
+	      </div>
+	  </fieldset>
+	</form>
+
+	<div class="container">
+		<div class="row">
+			<div class="results">
+				<div class="nofound" ng-hide="stores!==undefined">
+					<h2>No Store was Found. Please Search Again!</h2>
+				</div>
+
+				<div class="stores">
+					<div class="row">
+						<div class="small-12 medium-6 large-4 columns"
+						   ng-repeat="store in stores track by $index">
+                              <h5 ng-show="store.longName">{{store.longName}} ({{store.storeId}})</h5>
+                              <div class="left_content">
+                              	<div class="store_info">
+                              		<h6 ng-show="store.storeId">Store Info</h6>
+                              		<p ng-show="store.address">Address: {{store.address}}</p>
+                              		<p ng-show="store.address">{{store.city}}, {{store.region}} {{store.fullPostalCode}}</p>
+                              		<p ng-show="store.phone">Phone: {{store.phone}}</p>
+                              		<p ng-show="store.lat">GEO: {{store.lat}}, {{store.lng}}</p>
+                              		<p ng-show="store.distance">Distance: {{store.distance}}</p>
+                              	</div>
+                              	<div class="services">
+                              		<h6 ng-show="store.services">Services</h6>
+                              		<ul>
+                              			<li ng-repeat="service in store.services">
+                              				{{service.service}}
+                              			</li>
+                              		</ul>
+                              	</div>
+                              </div>
+                              <div class="right_content">
+                              	<h6 ng-show="store.hoursAmPm">Store Hours 
+                              		<span ng-show="store.storeType==='Mobile'">(Mobile)</span>
+                              		<span ng-show="store.storeType==='BigBox'">(Retail Store)</span>
+                              	</h6>
+
+                          		<ul class="store_hours">
+                          			<li ng-repeat="hour in store.hours[0]">
+                          				<span>{{hour | getDay}}</span>
+                          				<span>{{hour | getHours}}</span>
+                          			</li>
+                          		</ul>
+                              </div> 
+						</div> <!-- small-12 medium-6 large-4 columns -->
+					</div> <!-- row -->
+
+					<button ng-show="totalPages > currentPage" 
+				       ng-click="loadMore()"
+				       class="button info radius">Load More Store</button>
+				</div> <!-- stores -->
+			</div>
+		</div>
+	</div>
+</div>
+

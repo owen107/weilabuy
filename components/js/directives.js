@@ -7,8 +7,5 @@ directives.directive('itemInfo', function() {
 		restrict: 'EA',
 		replace: true,
 		templateUrl: "views/item_info.html",
-		// scope: {
-		// 	similarItems: '=info'
-		// }
 	};
 });

@@ -2,15 +2,15 @@
 
 var ctrls = angular.module('weilatbuy.controllers', []);
 
-// ctrls.controller('AppCtrl', function($scope, $http) {
-// });
-
 ctrls.controller('RecomCtrl', function($scope, $routeParams, Bestbuy) {
     
     var recom = $routeParams.recom;
-    Bestbuy.list(recom).then(function(data) {
-    	$scope.products = data.data.results;
-    });
+    if (recom !== 'findastore') {
+    	Bestbuy.list(recom).then(function(data) {
+	    	$scope.products = data.data.results;
+	    });
+    }
+    
 
 });
 
@@ -23,7 +23,7 @@ ctrls.controller('ProductCtrl', function($scope, $routeParams, Bestbuy, MoreResu
 	});
 
 	Bestbuy.reviews(sku).then(function(data) {
-		// $scope.reviews = data.data;
+
 		$scope.reviews = new MoreResults('reviews', sku, 'reviews').loadMore();
 	});
 
@@ -63,5 +63,46 @@ ctrls.controller('ProductCtrl', function($scope, $routeParams, Bestbuy, MoreResu
         }
     }
 
+});
+
+ctrls.controller('StoreCtrl', function($scope, Bestbuy, MoreResults) {
+
+	$scope.stores = 'undefined';
+	$scope.hours = [];
+
+	function splitHours(data) {
+		angular.forEach(data, function(value, key) {
+            $scope.hours.push(value.hoursAmPm.split('; '));
+            value.hours = $scope.hours;
+            $scope.hours = [];
+		});
+	}
+
+	$scope.searchStore = function(zipCode) {
+		
+		$scope.zipcode = this.zipCode;
+
+        Bestbuy.stores(zipCode).then(function(data) {
+        	
+        	$scope.stores = data.data.stores;
+        	$scope.currentPage = data.data.currentPage;
+        	$scope.totalPages = data.data.totalPages;
+
+        	splitHours(data.data.stores);
+        });
+
+        $scope.zipCode = '';
+	}
+
+	$scope.loadMore = function() {
+		Bestbuy.stores($scope.zipcode, {page: parseInt($scope.currentPage, 10) + 1})
+		  .then(function(data) {
+
+			$scope.currentPage = data.data.currentPage;
+			splitHours(data.data.stores);
+
+			$scope.stores = $scope.stores.concat(data.data.stores);
+		});
+	}
 });
 
