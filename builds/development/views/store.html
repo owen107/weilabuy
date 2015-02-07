@@ -13,6 +13,28 @@
 		        <div class="small-2 columns">
 		          <a ng-click="searchStore(zipCode)"class="button postfix">Find</a>
 		        </div>
+
+		        <div class="filter">
+		        	<label>Filter: </label>
+					<input type="text" ng-model="query"/>
+					<label>Order By: </label>
+					<select ng-model="order">
+					    <option value="distance">Distance</option>
+					    <option value="longName">Name</option>
+					    <option value="city">City</option>
+					    <option value="region">Region</option>
+					    <option value="fullPostalCode">Zip Code</option>
+					    <option value="storeType">Store Type</option>
+					</select>
+
+					<div class="formgroup cf">
+						<input id="dirascending" type="radio" ng-model="direction" name="direction" value="">
+						<label for="dirascending">asc</label>
+
+						<input id="dirdescending" type="radio" ng-model="direction" name="direction" value="reverse">
+						<label for="dirdescending">desc</label>
+					</div>
+		        </div>
 		      </div>
 	      </div>
 	  </fieldset>
@@ -28,7 +50,7 @@
 				<div class="stores">
 					<div class="row">
 						<div class="small-12 medium-6 large-4 columns"
-						   ng-repeat="store in stores track by $index">
+						   ng-repeat="store in stores | filter: query | orderBy:order:direction track by $index">
                               <h5 ng-show="store.longName">{{store.longName}} ({{store.storeId}})</h5>
                               <div class="left_content">
                               	<div class="store_info">
