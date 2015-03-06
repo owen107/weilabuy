@@ -1,23 +1,42 @@
-<div class="container" ng-cloak>
-	<div class="small-12 medium-6 large-4 columns" ng-repeat="product in products">
-		<div class="product">
-			<div class="left_info">
+<div class="hero_image">
+	<span class="title">Welcome to Weila Buy - Savings, Options & Convenience</span>
+    <h1>Let's go shopping!</h1>
+    <a href="#{{prodName}}">
+    	<img class="arrow" src="img/arrow.svg" alt="Down arrow">
+    </a>
+</div>
+
+<div class="row" id="products">
+	<h1 ng-show="prodName === 'mostViewed'">Most Popular Viewed Products</h1>
+	<h1 ng-show="prodName === 'trendingViewed'">Trending Products</h1>
+	<div class="small-12 medium-6 large-6 columns col" ng-repeat="product in products">
+		<div class="product row">
+			<div id="left_info" class="small-5 columns">
 				<div class="img_price">
 					<a ng-href="#/products/{{product.sku}}">
 						<img ng-src="{{product.images.standard}}">
 					</a>
-					<h2>{{product.prices.regular}}</h2>
-					<h3 ng-hide="product.prices.current===product.prices.regular">{{product.prices.current}}</h3>
+					<p class="price_match"><i class="fi-price-tag large"></i><span> price</span> gurantee</p>
+					<h2>{{product.prices.current | currency}}</h2>					
+		            <div class="onsale" ng-show="product.prices.regular > product.prices.current">
+		              <h4>ON SALE</h4>
+		              <h4 class="savings">SAVE {{product.prices.regular - product.prices.current | currency}} <span>(Reg. {{product.prices.regular}})</span></h4>
+		            </div>
 				</div>
 			</div>
 
-			<div class="right_info">
+			<div id="right_info" class="small-7 columns">
 				<div class="details">
 					<a ng-href="#/products/{{product.sku}}">
 					   <h2>{{product.names.title}}</h2>
 				    </a>
+				    <p class="sku"><span>sku:</span> {{product.sku}}</p>
 					<p>{{product.descriptions.short}}</p>
-					<h3>{{product.customerReviews.averageScore}} {{product.customerReviews.count}}</h3>
+					<h3>
+						<i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i>
+						<span ng-show="product.customerReviews.averageScore">{{product.customerReviews.averageScore}} ({{product.customerReviews.count}} Reviews)</span>
+						<span ng-hide="product.customerReviews.averageScore">Write a review</span>
+					</h3>
 				</div>
 			</div>
 		</div>

@@ -5,6 +5,7 @@ var ctrls = angular.module('weilatbuy.controllers', []);
 ctrls.controller('RecomCtrl', function($scope, $routeParams, Bestbuy) {
     
     var recom = $routeParams.recom;
+    $scope.prodName = $routeParams.recom;
     if (recom !== 'findastore') {
     	Bestbuy.list(recom).then(function(data) {
 	    	$scope.products = data.data.results;

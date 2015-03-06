@@ -29,9 +29,9 @@ module.exports = function(grunt) {
            files: ['components/js/*.js'],
            tasks: ['uglify:dev']
    	  	},
-   	  	css: {
-           files: ['builds/development/css/*.css']
-   	  	},
+   	  	// css: {
+       //     files: ['builds/development/css/*.css']
+   	  	// },
    	  	html: {
            files: ['builds/development/*.html']
    	  	}

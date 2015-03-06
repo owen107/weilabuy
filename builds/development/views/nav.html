@@ -1,11 +1,11 @@
 <nav class="tab-bar hide-for-medium-up">
-    <section class="right-small">
-       <a class="right-off-canvas-toggle menu-icon"><span></span></a>
-    </section>
+  <section class="right-small">
+     <a class="right-off-canvas-toggle menu-icon"><span></span></a>
+  </section>
 
-    <section class="middle tab-bar-section">
-       <h1 class="title">Weila Buy</h1>
-    </section>
+  <section class="middle tab-bar-section">
+     <h1 class="title">Weila Buy</h1>
+  </section>
 </nav>
 
 <aside class="right-off-canvas-menu">
@@ -18,19 +18,22 @@
 </aside>
 <a class="exit-off-canvas"></a>
 
-<!-- top bar code -->
-<nav class="top-bar show-for-medium-up" data-topbar>
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="#/">Weila Buy</a></h1>
-    </li>
-    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-  </ul>
-  <section class="top-bar-section">
-    <ul class="right">
-      <li><a ng-href="#/mostViewed">Most Popular Viewed</a></li>
-      <li><a ng-href="#/trendingViewed">Trending Products</a></li>
-      <li><a ng-href="#/search/findastore">Find a Store</a></li>
+  <!-- top bar code -->
+<div class="contain-to-grid fixed">
+  <nav class="top-bar show-for-medium-up" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <a href="#/"><img src="img/weilabuy-logo.png" alt="Logo for Weila Buy"></a>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
-  </section>
-</nav>
+    <section class="top-bar-section">
+      <ul class="right" ng-init="selectedTab = 'mostViewed'">
+        <li ng-class="{'active':selectedTab === 'mostViewed'}" ng-click="selectedTab = 'mostViewed'"><a ng-href="#/mostViewed">Most Popular Viewed</a></li>
+        <li ng-class="{'active':selectedTab === 'trendingViewed'}" ng-click="selectedTab = 'trendingViewed'"><a ng-href="#/trendingViewed">Trending Products</a></li>
+        <li ng-class="{'active':selectedTab === 'findastore'}" ng-click="selectedTab = 'findastore'"><a ng-href="#/search/findastore">Find A Store</a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
+

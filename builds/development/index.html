@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8">
   <title>Weila Buy</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/lib/foundation/foundation.min.css"/>
+  <link rel="stylesheet" href="css/lib/foundation/foundation-icons.css"/>
+  <link rel="stylesheet" href="css/lib/fontawesome/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body >
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
 
-      <div  class="row" ng-include="'views/nav.html'"></div>
+      <div ng-include="'views/nav.html'"></div>
 
-    <div class="row" ng-view></div>
+    <div ng-view></div>
 
     </div><!-- end inner wrap, must go after ALL content -->
   </div><!-- end offcanvas -->
