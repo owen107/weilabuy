@@ -115,6 +115,64 @@ Navigation - Top Bar
 }
 
 /*****************************
+Navigation - Offcanvas menu
+*****************************/
+
+.tab-bar {
+    color: #47ABED;
+    border-bottom: 1px solid #47ABED; 
+}
+
+.tab-bar,
+.right-off-canvas-menu {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.right-small {
+    border-left-color: #47ABED; 
+}
+
+.tab-bar .menu-icon span::after {
+    box-shadow: 0 0 0 1px #47ABED,0 7px 0 1px #47ABED,0 14px 0 1px #47ABED;
+}
+
+.tab-bar-section img {
+    width: 2.3rem;
+    height: 2.3rem;
+}
+
+.tab-bar-section img:hover {
+    -webkit-transform: rotate(1turn);
+    -ms-transform: rotate(1turn);
+    transform: rotate(1turn);
+    -webkit-transition: 0.6s ease-in-out;
+    transition: 0.6s ease-in-out;
+}
+
+ul.off-canvas-list li label {
+    background: rgba(71, 171, 237, 1);
+}
+
+ul.off-canvas-list li label,
+ul.off-canvas-list li a:hover,
+ul.off-canvas-list li.active a {
+    color: #fff;
+} 
+
+ul.off-canvas-list li a {
+    color: rgba(71, 171, 237, 0.7);
+    border-bottom-color: #47ABED;
+}
+
+ul.off-canvas-list li a:hover {
+    background: rgba(71, 171, 237, 0.7);
+}
+
+ul.off-canvas-list li.active {
+    background: rgba(71, 171, 237, 0.7);
+}
+
+/*****************************
 Hero Image
 *****************************/
 
@@ -163,14 +221,6 @@ Hero Image
     transform: scale(1.1);
     -webkit-transition: 0.6s ease-in-out;
     transition: 0.6s ease-in-out;
-}
-
-@media (max-width: 768px) {
-    .hero_image {
-        max-height: 350px;
-        padding: 50px 25px 0;
-        margin-top: 0;
-    }
 }
 
 /*****************************
@@ -285,6 +335,7 @@ Recommedation Page Layout
 .col {
     height: 290px;
     padding-top: 10px;
+    margin-bottom: 10px;
 }
 
 .col:hover {
@@ -315,8 +366,6 @@ Accordion
     padding: 20px;
 }
 
-
-
 /*****************************
 Store Search Results
 *****************************/
@@ -331,3 +380,140 @@ Store Search Results
 .store {
     border-bottom: 1px dotted rgba(0, 0, 0, 0.9);
 }
+
+/*****************************
+Footer 
+*****************************/
+
+.footer {
+    padding: 15px 0;
+    text-align: center;
+    border-top: 2px solid #47ABED;
+}
+
+.footer p {
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+
+.footer span {
+    color: rgba(71, 171, 237, 0.8);
+}
+
+.footer span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer h3,
+.footer p {
+    color: #878787;
+}
+
+.footer .icon-facebook-sign:hover {
+    color: #3B5998;
+}
+
+.footer .icon-twitter-sign:hover {
+    color: #00ACED;
+}
+
+.footer .icon-google-plus-sign:hover {
+    color: #DD4B39;
+}
+
+.footer .icon-youtube-sign:hover {
+    color: #BB0000;
+}
+
+/*****************************
+Media Queries
+*****************************/
+
+@media (max-width: 40.063em) {
+    
+    .hero_image {
+        max-height: 350px;
+        padding: 50px 25px 0;
+        margin-top: 0;
+    }
+
+    .title {
+        font-size: 1.3em;
+        border: none;
+    }
+
+    .hero_image h1 {
+        font-size: 5rem;
+        line-height: 1.1;
+    }
+
+    #products {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 40em) {
+
+    .title {
+        font-size: 1em;
+    }
+
+    .hero_image h1 {
+        font-size: 4.5rem;
+        line-height: 1;
+    }
+
+    #left_info,
+    #right_info {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    #products h1 {
+        font-size: 1.2em;
+    }
+
+    .product .details h2 {
+        font-size: 0.8em;
+    }
+
+    .product .img_price img {
+        height: 80px;
+    }
+
+    .product .img_price .price_match {
+        font-size: 0.7em;
+    }
+
+    .product .img_price h2 {
+      font-size: 1.3em;
+    }
+
+    .product .img_price .onsale h4 {
+      font-size: 1em;
+    }
+
+    .product .img_price .onsale .savings {
+        font-size: 0.62em;
+    }
+
+    .product .details .sku {
+        font-size: 0.65em;
+    }
+
+    .product .details p {
+        font-size: 0.7em;
+    }
+
+    .product .details h3 {
+      font-size: 0.85em;
+    }
+
+    .col {
+      height: 250px;
+    }
+} 
+
+
+

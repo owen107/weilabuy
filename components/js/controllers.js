@@ -2,6 +2,29 @@
 
 var ctrls = angular.module('weilatbuy.controllers', []);
 
+ctrls.controller('NavCtrl', ['$scope', '$location', function($scope, $location) {
+    
+    $scope.$location = $location;
+    
+    $scope.items = [
+      { path: '/mostViewed', title: 'Most Popular Viewed' },
+      { path: '/trendingViewed', title: 'Trending Products' },
+      { path: '/search/findastore', title: 'Find A Store' }
+    ];
+    $scope.isActive = function(item) {
+      if (item.path == $location.path()) {
+        return true;
+      }
+      return false;
+    };
+}]);
+
+ctrls.controller('FooterCtrl', function($scope) {
+    
+    var date = new Date();
+    $scope.year = date.getFullYear();
+});
+
 ctrls.controller('RecomCtrl', function($scope, $routeParams, Bestbuy) {
     
     var recom = $routeParams.recom;
@@ -11,8 +34,6 @@ ctrls.controller('RecomCtrl', function($scope, $routeParams, Bestbuy) {
 	    	$scope.products = data.data.results;
 	    });
     }
-    
-
 });
 
 ctrls.controller('ProductCtrl', function($scope, $routeParams, Bestbuy, MoreResults) {

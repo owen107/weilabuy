@@ -4,16 +4,16 @@
   </section>
 
   <section class="middle tab-bar-section">
-     <h1 class="title">Weila Buy</h1>
+     <a href="#/"><img src="img/weilabuy-logo.png" alt="Logo for Weila Buy"></a>
   </section>
 </nav>
 
 <aside class="right-off-canvas-menu">
-  <ul class="off-canvas-list">
+  <ul class="off-canvas-list" ng-controller="NavCtrl">
     <li><label>MENU</label></li>
-    <li><a ng-href="#/mostViewed">Most Popular Viewed</a></li>
-    <li><a ng-href="#/trendingViewed">Trending Products</a></li>
-    <li><a ng-href="#/search/findastore">Find a Store</a></li>
+    <li ng-class="{'active': $location.path() === '/mostViewed'}"><a ng-href="#/mostViewed">Most Popular Viewed</a></li>
+    <li ng-class="{'active': $location.path() === '/trendingViewed'}"><a ng-href="#/trendingViewed">Trending Products</a></li>
+    <li ng-class="{'active': $location.path() === '/search/findastore'}"><a ng-href="#/search/findastore">Find a Store</a></li>
   </ul>
 </aside>
 <a class="exit-off-canvas"></a>
@@ -28,10 +28,8 @@
       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
     <section class="top-bar-section">
-      <ul class="right" ng-init="selectedTab = 'mostViewed'">
-        <li ng-class="{'active':selectedTab === 'mostViewed'}" ng-click="selectedTab = 'mostViewed'"><a ng-href="#/mostViewed">Most Popular Viewed</a></li>
-        <li ng-class="{'active':selectedTab === 'trendingViewed'}" ng-click="selectedTab = 'trendingViewed'"><a ng-href="#/trendingViewed">Trending Products</a></li>
-        <li ng-class="{'active':selectedTab === 'findastore'}" ng-click="selectedTab = 'findastore'"><a ng-href="#/search/findastore">Find A Store</a></li>
+      <ul class="right" ng-controller="NavCtrl">
+        <li ng-repeat="item in items" ng-class="{'active': isActive(item)}"><a href="#{{item.path}}">{{item.title}}</a></li>
       </ul>
     </section>
   </nav>
