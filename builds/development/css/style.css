@@ -120,7 +120,7 @@ Navigation - Offcanvas menu
 
 .tab-bar {
     color: #47ABED;
-    border-bottom: 1px solid #47ABED; 
+    border-bottom: 2px solid #47ABED; 
 }
 
 .tab-bar,
@@ -129,7 +129,7 @@ Navigation - Offcanvas menu
 }
 
 .right-small {
-    border-left-color: #47ABED; 
+    border-left: 2px solid #47ABED; 
 }
 
 .tab-bar .menu-icon span::after {
@@ -139,6 +139,7 @@ Navigation - Offcanvas menu
 .tab-bar-section img {
     width: 2.3rem;
     height: 2.3rem;
+    margin-bottom: 5px;
 }
 
 .tab-bar-section img:hover {
@@ -340,6 +341,7 @@ Recommedation Page Layout
 
 .col:hover {
     background: rgba(71, 171, 237, 0.2);
+    border-radius: 10px;
 }
 
 /*****************************
@@ -367,18 +369,220 @@ Accordion
 }
 
 /*****************************
+Store Search Fields
+*****************************/
+
+.search_store {
+    padding-top: 80px;
+}
+
+fieldset, 
+input[type="text"],
+select {
+    border-radius: 5px;
+}
+
+select:hover,
+input[type="text"]:focus {
+    background: rgba(71, 171, 237, 0.05);   
+}
+
+select:hover,
+input[type="text"]:focus,
+input[type="text"],
+select {
+    border-color: rgba(71, 171, 237, 0.4);
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 5px rgba(71, 171, 237, 0.8);
+}
+
+input[type="text"],
+select {
+    box-shadow: inset 0 1px 2px rgba(71, 171, 237, 0.1);
+}
+
+fieldset legend {   
+    font-family: 'Signika' sans-serif;
+}
+
+label,
+fieldset legend {
+    color: #3A8BC0;
+}
+
+select {
+    background-color: #fff;
+}
+
+.search_store .button {
+    background-color: #47ABED; 
+}
+
+.search_store .button:hover {
+    background-color: #3A8BC0;
+}
+
+.search_store .search_btn {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+input[type="text"]:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.formgroup {
+    margin-top: 25px;
+}
+
+#filter_left,
+#filter_middle,
+#filter_right {
+    padding-left: 0;
+}
+
+input[type="radio"]+label {
+    margin-left: 0.2rem;
+    margin-right: 0.4rem;
+}
+
+/*****************************
 Store Search Results
 *****************************/
 
-/* Layout */
+.results .nofound {
+    text-align: center;
+    padding-top: 15px; 
+}
 
-.stores {
-    width: 90%;
-    margin: 0 auto;
+.results .nofound h2 {
+    color: #47ABED;
+    font-size: 1.5em;
+}
+
+.results .stores {
+    padding-top: 15px;
+}
+
+.results h4 {
+    font-size: 1em;
+    color: #47ABED;
+    margin-bottom: 10px;
 }
 
 .store {
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.9);
+    height: 300px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.store:hover {
+    background: rgba(71, 171, 237, 0.2);
+}
+
+.stores h5 {
+    color: #003481;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+}
+
+.stores h5,
+.stores .services ul li {
+    font-family: 'Signika' sans-serif;
+}
+
+.stores .store_info h6,
+.stores .store_hours h6,
+.stores .services h6 {
+    font-size: 0.8em;
+    margin-bottom: 3px;
+}
+
+.stores .store_info h6 {
+    color: #CF0000;
+}
+
+.stores .store_hours h6 {
+    color: #FF6600;
+}
+
+.stores .store_info p {
+    margin-bottom: 0;
+    font-size: 0.7em;
+}
+
+#hide_icon {
+    visibility: hidden;
+}
+
+.stores .services h6 {
+    padding-top: 4px;
+}
+
+.stores .services ul,
+.stores .store_hours ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+.stores .services ul li {
+    display: inline-block;
+    font-size: 0.45em;
+    padding: 3px 5px;
+    border: 1.5px solid #47ABED;
+    border-radius: 5px;
+    color: #47ABED;
+    margin-right: 3px;
+}
+
+.stores .services ul li:hover {
+    background: #47ABED;
+    color: #fff;
+    cursor: pointer;
+}
+
+.stores .store_hours ul li {
+    display: block;
+    font-size: 0.4em;
+}
+
+#left_content {
+    padding-right: 0;
+}
+
+#right_content {
+    padding-left: 0;
+}
+
+.icon-home,
+.icon-phone,
+.icon-map-marker,
+.icon-dashboard {
+    color: #47ABED;
+}
+
+.stores .store_hours .day {
+    font-weight: bold;
+}
+
+#load_store,
+#load_comment {
+   border-radius: 5px;
+   font-family: 'Signika' sans-serif;
+   margin-top: 5px;
+   background: #fff;
+   color: #47ABED;
+   border: 2px solid #47ABED;
+}
+
+#load_store:hover,
+#load_comment:hover {
+   background: #47ABED;
+   color: #fff;
 }
 
 /*****************************
@@ -389,6 +593,7 @@ Footer
     padding: 15px 0;
     text-align: center;
     border-top: 2px solid #47ABED;
+    margin-top: 10px;
 }
 
 .footer p {
@@ -410,20 +615,35 @@ Footer
     color: #878787;
 }
 
-.footer .icon-facebook-sign:hover {
+.footer .icon-facebook-sign {
     color: #3B5998;
 }
 
-.footer .icon-twitter-sign:hover {
+.footer .icon-twitter-sign {
     color: #00ACED;
 }
 
-.footer .icon-google-plus-sign:hover {
+.footer .icon-google-plus-sign {
     color: #DD4B39;
 }
 
-.footer .icon-youtube-sign:hover {
+.footer .icon-youtube-sign {
     color: #BB0000;
+}
+
+.footer .icon-facebook-sign,
+.footer .icon-twitter-sign,
+.footer .icon-google-plus-sign,
+.footer .icon-youtube-sign {
+    opacity: 0.7;
+}
+
+.footer .icon-facebook-sign:hover,
+.footer .icon-twitter-sign:hover,
+.footer .icon-google-plus-sign:hover,
+.footer .icon-youtube-sign:hover {
+    cursor: pointer;
+    opacity: 1;
 }
 
 /*****************************
@@ -450,6 +670,22 @@ Media Queries
 
     #products {
         margin-top: 0;
+    }
+
+    .search_store {
+        padding: 10px 10px 0;
+    }
+
+    input[type="radio"]+label {
+      margin-left: 0.1rem;
+      margin-right: 0.2rem;
+    }
+}
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    
+    .search_store {
+        padding: 80px 20px 0; 
     }
 }
 

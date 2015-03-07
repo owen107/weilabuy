@@ -1,38 +1,43 @@
-<div class="row">
+<div class="row search_store">
 	<form>
 	  <fieldset>
-	    <legend>Find a Store</legend>
+	    <legend>Find A Store</legend>
 	      <div class="large-12 columns">
 		      <div class="row collapse">
-		        <div class="small-10 columns">
-		          <input type="text" name="zipCode"
+		        <div class="small-9 medium-10 columns">
+		          <input type="text" id="search_zipcode" name="zipCode"
 		            ng-model="zipCode" 
-		            ng-keyup="$event.keyCode == 13 ? searchStore(zipCode) : null" 
+		            ng-keyup="$event.keyCode === 13 ? searchStore(zipCode) : null" 
 		            placeholder="Enter the ZipCode for Search" />
 		        </div>
-		        <div class="small-2 columns">
-		          <a ng-click="searchStore(zipCode)"class="button postfix">Find</a>
+		        <div class="small-3 medium-2 columns">
+		          <a ng-click="searchStore(zipCode)" class="button postfix search_btn">Search</a>
 		        </div>
 
-		        <div class="filter">
-		        	<label>Filter: </label>
-					<input type="text" ng-model="query"/>
-					<label>Order By: </label>
-					<select ng-model="order">
-					    <option value="distance">Distance</option>
-					    <option value="longName">Name</option>
-					    <option value="city">City</option>
-					    <option value="region">Region</option>
-					    <option value="fullPostalCode">Zip Code</option>
-					    <option value="storeType">Store Type</option>
-					</select>
+		        <div class="filter row">
+		        	<div class="small-12 medium-6 large-6 columns" id="filter_left">
+		        		<label>Filter: </label>
+						<input type="text" ng-model="query"/>
+		        	</div>
+		        	
+		        	<div class="small-6 medium-4 large-4 columns" id="filter_middle">
+						<label>Order By: </label>
+						<select ng-model="order">
+						    <option value="distance">Distance</option>
+						    <option value="longName">Name</option>
+						    <option value="city">City</option>
+						    <option value="region">Region</option>
+						    <option value="fullPostalCode">Zip Code</option>
+						    <option value="storeType">Store Type</option>
+						</select>
+					</div>
 
-					<div class="formgroup cf">
+					<div class="formgroup small-6 medium-2 large-2 columns" id="filter_right">
 						<input id="dirascending" type="radio" ng-model="direction" name="direction" value="">
-						<label for="dirascending">asc</label>
+						<label for="dirascending">Asc</label>
 
 						<input id="dirdescending" type="radio" ng-model="direction" name="direction" value="reverse">
-						<label for="dirdescending">desc</label>
+						<label for="dirdescending">Desc</label>
 					</div>
 		        </div>
 		      </div>
@@ -41,56 +46,57 @@
 	</form>
 
 	<div class="container">
-		<div class="row">
-			<div class="results">
-				<div class="nofound" ng-hide="stores!==undefined">
-					<h2>No Store was Found. Please Search Again!</h2>
-				</div>
+		<div class="results">
+			<div class="nofound" ng-hide="stores!==undefined">
+				<h2><i class="icon-frown"></i> No Store was Found. Please Search Again!</h2>
+			</div>
 
-				<div class="stores">
-					<div class="row">
-						<div class="store small-12 medium-6 large-4 columns"
-						   ng-repeat="store in stores | filter: query | orderBy:order:direction track by $index">
-                              <h5 ng-show="store.longName">{{store.longName}} ({{store.storeId}})</h5>
-                              <div class="left_content">
-                              	<div class="store_info">
-                              		<h6 ng-show="store.storeId">Store Info</h6>
-                              		<p ng-show="store.address">Address: {{store.address}}</p>
-                              		<p ng-show="store.address">{{store.city}}, {{store.region}} {{store.fullPostalCode}}</p>
-                              		<p ng-show="store.phone">Phone: {{store.phone}}</p>
-                              		<p ng-show="store.lat">GEO: {{store.lat}}, {{store.lng}}</p>
-                              		<p ng-show="store.distance">Distance: {{store.distance}}</p>
-                              	</div>
-                              	<div class="services">
-                              		<h6 ng-show="store.services">Services</h6>
-                              		<ul>
-                              			<li ng-repeat="service in store.services">
-                              				{{service.service}}
-                              			</li>
-                              		</ul>
-                              	</div>
-                              </div>
-                              <div class="right_content">
-                              	<h6 ng-show="store.hoursAmPm">Store Hours 
-                              		<span ng-show="store.storeType==='Mobile'">(Mobile)</span>
-                              		<span ng-show="store.storeType==='BigBox'">(Retail Store)</span>
-                              	</h6>
+			<div class="stores" ng-show="stores!=='undefined'">
+				<h4 ng-show="stores!=='undefined'"><i class="icon-search"></i> Search Results</h4>
+				<!-- <div class="row"> -->
+					<div class="store small-12 medium-6 large-4 columns"
+					   ng-repeat="store in stores | filter: query | orderBy:order:direction track by $index">
+                          <h5 ng-show="store.longName">{{store.longName}} ({{store.storeId}})</h5>
 
-                          		<ul class="store_hours">
-                          			<li ng-repeat="hour in store.hours[0]">
-                          				<span>{{hour | getDay}}</span>
-                          				<span>{{hour | getHours}}</span>
+                          <div class="row">
+                          	<div id="left_content" class="small-7 columns">
+	                          	<div class="store_info">
+	                          		<h6 ng-show="store.storeId">Store Info
+	                          			<span ng-show="store.storeType==='Mobile'">- Mobile</span>
+		                          		<span ng-show="store.storeType==='BigBox'">- Retail Store</span>
+	                          		</h6>
+	                          		<p ng-show="store.address"><i class="icon-home"></i> {{store.address}}</p>
+	                          		<p ng-show="store.address"><i class="icon-home" id="hide_icon"></i> {{store.city}}, {{store.region}} {{store.fullPostalCode}}</p>
+	                          		<p ng-show="store.phone"><i class="icon-phone"></i> {{store.phone}}</p>
+	                          		<p ng-show="store.lat"><i class="icon-map-marker"></i> {{store.lat}}, {{store.lng}}</p>
+	                          		<p ng-show="store.distance"><i class="icon-dashboard"></i> {{store.distance}} Miles</p>
+	                          	</div>
+	                        </div>
+	                        <div id="right_content" class="small-5 columns store_hours">
+	                          	<h6 ng-show="store.hoursAmPm">Store Hours</h6>
+
+	                      		<ul>
+	                      			<li ng-repeat="hour in store.hours[0]">
+	                      				<span class="day">{{hour | getDay}}: </span>
+	                      				<span>{{hour | getHours}}</span>
+	                      			</li>
+	                      		</ul>
+	                        </div>
+	                        <div class="services small-12 columns">
+                          		<h6 ng-show="store.storeServices.length">Store Services</h6>
+                          		<ul>
+                          			<li ng-repeat="service in store.storeServices">
+                          				{{service}}
                           			</li>
                           		</ul>
-                              </div> 
-						</div> <!-- small-12 medium-6 large-4 columns -->
-					</div> <!-- row -->
-
+                          	</div> 
+                          </div>
+					</div> <!-- small-12 medium-6 large-4 columns -->
 					<button ng-show="totalPages > currentPage" 
-				       ng-click="loadMore()"
-				       class="button info radius">Load More Store</button>
-				</div> <!-- stores -->
-			</div>
+				         ng-click="loadMore()"
+				         class="button small-12 columns" id="load_store">Load More Store</button>
+			</div> <!-- stores -->
+
 		</div>
 	</div>
 </div>

@@ -100,6 +100,23 @@ ctrls.controller('StoreCtrl', function($scope, Bestbuy, MoreResults) {
 		});
 	}
 
+    function servicesOrder(data) {
+        angular.forEach(data, function(value, key) {
+            
+            var servicesArray = [];
+            angular.forEach(value.services, function(val) {
+                
+                servicesArray.push(val.service);
+
+                servicesArray.sort(function(a, b) {
+                    return a.length - b.length;
+                });
+            });
+                
+            value.storeServices = servicesArray; 
+        });
+    }
+
 	$scope.searchStore = function(zipCode) {
 		
 		$scope.zipcode = this.zipCode;
@@ -111,6 +128,8 @@ ctrls.controller('StoreCtrl', function($scope, Bestbuy, MoreResults) {
         	$scope.totalPages = data.data.totalPages;
 
         	splitHours(data.data.stores);
+            servicesOrder(data.data.stores);
+            // console.log(data.data.stores);
         });
 
         $scope.zipCode = '';
@@ -122,6 +141,7 @@ ctrls.controller('StoreCtrl', function($scope, Bestbuy, MoreResults) {
 
 			$scope.currentPage = data.data.currentPage;
 			splitHours(data.data.stores);
+            servicesOrder(data.data.stores);
 
 			$scope.stores = $scope.stores.concat(data.data.stores);
 		});

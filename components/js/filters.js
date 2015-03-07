@@ -9,25 +9,25 @@ filters.filter('getDay', function() {
         
         switch (day) {
             case "Mon":
-                result = "Monday";
+                result = "MON";
                 break;
             case "Tue":
-                result = "Tuesday"; 
+                result = "TUE"; 
                 break;
             case "Wed":
-                result = "Wednesday"; 
+                result = "WED"; 
                 break;
             case "Thurs":
-                result = "Thursday"; 
+                result = "THU"; 
                 break;
             case "Fri":
-                result = "Friday"; 
+                result = "FRI"; 
                 break;
             case "Sat":
-                result = "Satursday";  
+                result = "SAT";  
                 break;
             case "Sun":
-                result = "Sunday"; 
+                result = "SUN"; 
                 break;
         }
         return result;
@@ -36,7 +36,8 @@ filters.filter('getDay', function() {
 
 filters.filter('getHours', function() {
 	return function(input) {
-        var start = input.split('am')[0];
+        var temp = input.split('am')[0];
+        var start = temp.split(': ')[1];
         var end = input.split('-')[1].split('pm')[0];
 
         var result = start + ':00 am - ' + end + ':00 pm';

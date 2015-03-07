@@ -106,6 +106,18 @@ ctrls.controller("StoreCtrl", function($scope, Bestbuy, MoreResults) {
             $scope.hours = [];
         });
     }
+    function servicesOrder(data) {
+        angular.forEach(data, function(value, key) {
+            var servicesArray = [];
+            angular.forEach(value.services, function(val) {
+                servicesArray.push(val.service);
+                servicesArray.sort(function(a, b) {
+                    return a.length - b.length;
+                });
+            });
+            value.storeServices = servicesArray;
+        });
+    }
     $scope.searchStore = function(zipCode) {
         $scope.zipcode = this.zipCode;
         Bestbuy.stores(zipCode).then(function(data) {
@@ -113,6 +125,7 @@ ctrls.controller("StoreCtrl", function($scope, Bestbuy, MoreResults) {
             $scope.currentPage = data.data.currentPage;
             $scope.totalPages = data.data.totalPages;
             splitHours(data.data.stores);
+            servicesOrder(data.data.stores);
         });
         $scope.zipCode = "";
     };
@@ -122,6 +135,7 @@ ctrls.controller("StoreCtrl", function($scope, Bestbuy, MoreResults) {
         }).then(function(data) {
             $scope.currentPage = data.data.currentPage;
             splitHours(data.data.stores);
+            servicesOrder(data.data.stores);
             $scope.stores = $scope.stores.concat(data.data.stores);
         });
     };
@@ -149,31 +163,31 @@ filters.filter("getDay", function() {
         var result = "";
         switch (day) {
           case "Mon":
-            result = "Monday";
+            result = "MON";
             break;
 
           case "Tue":
-            result = "Tuesday";
+            result = "TUE";
             break;
 
           case "Wed":
-            result = "Wednesday";
+            result = "WED";
             break;
 
           case "Thurs":
-            result = "Thursday";
+            result = "THU";
             break;
 
           case "Fri":
-            result = "Friday";
+            result = "FRI";
             break;
 
           case "Sat":
-            result = "Satursday";
+            result = "SAT";
             break;
 
           case "Sun":
-            result = "Sunday";
+            result = "SUN";
             break;
         }
         return result;
@@ -182,7 +196,8 @@ filters.filter("getDay", function() {
 
 filters.filter("getHours", function() {
     return function(input) {
-        var start = input.split("am")[0];
+        var temp = input.split("am")[0];
+        var start = temp.split(": ")[1];
         var end = input.split("-")[1].split("pm")[0];
         var result = start + ":00 am - " + end + ":00 pm";
         return result;
