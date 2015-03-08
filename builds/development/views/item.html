@@ -1,0 +1,10 @@
+<li class="small-12 medium-2 columns">	
+	<img ng-src="{{item.images.standard}}" alt="{{item.names.title}}"/>
+	<a ng-href="#/products/{{item.sku}}"><p>{{item.names.title}}</p></a>
+	<p class="score" ng-hide="item.customerReviews.averageScore===null || item.customerReviews.count===null">
+		<i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i>
+		<span>{{item.customerReviews.averageScore}} ({{item.customerReviews.count}})</span>
+	</p>
+	<h5 ng-show="item.prices.regular===item.prices.current">{{item.prices.regular | currency}}</h5>
+	<h5 ng-show="item.prices.regular > item.prices.current"><span>On Sale</span> {{item.prices.current | currency}}</h5>
+</li>

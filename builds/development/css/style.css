@@ -587,6 +587,78 @@ Product Details Page
 Similiar Products Section
 *****************************/
 
+#also_like .flexslider,
+#also_viewed .flexslider {
+    margin-bottom: 0;
+}
+
+#also_like .flexslider li,
+#also_viewed .flexslider li {
+   margin-right: 5px;
+   width: 196px;
+   padding-top: 15px;
+}
+
+#also_like .flexslider img,
+#also_viewed .flexslider img {
+   height: 120px;
+   max-width: 180px;
+   margin-bottom: 20px;
+   margin-right: auto;
+   margin-left: auto;
+}
+
+#also_like .flexslider p,
+#also_viewed .flexslider p {
+    margin-bottom: 0;
+    font-size: 0.8em;
+    color: #3A8BC0;
+    padding-left: 10px;
+}
+
+#also_like .flexslider a:hover,
+#also_viewed .flexslider a:hover {
+    text-decoration: underline;
+}
+
+#also_like .score i,
+#also_viewed .score i {
+    color: #FFCC00;
+    font-size: 1.3em;
+}
+
+#also_like .score span,
+#also_viewed .score span {
+    color: #878787;
+}
+
+#also_like .flexslider h5,
+#also_viewed .flexslider h5 {
+    font-size: 0.95em;
+    padding-left: 10px;
+}
+
+#also_like .flexslider h5 span,
+#also_viewed .flexslider h5 span {
+    color: #CF0000;
+}
+
+#also_like .flex-control-nav,
+#also_viewed .flex-control-nav {
+    display: none;
+}
+
+#also_like .flex-direction-nav a,
+#also_viewed .flex-direction-nav a {
+    height: 50px;
+    top: 40%;
+}
+
+#also_like .flex-direction-nav a:before,
+#also_viewed .flex-direction-nav a:before {
+    color: rgba(71, 171, 237, 0.8);
+}
+
 /*****************************
 Comment Section
 *****************************/
@@ -1155,11 +1227,70 @@ Media Queries
     }
 
     .product .details h3 {
-      font-size: 0.85em;
+        font-size: 0.85em;
     }
 
     .col {
-      height: 250px;
+        height: 250px;
+    }
+
+    .product_details .prod_img img {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+    .product_details .short_info h2 {
+        font-size: 1.4em;
+    }
+
+    .product_details .prod_price {
+        padding: 10px 0 0;
+        width: 98%;
+    }
+
+    #manuf span:not(:first-child) {
+        display: block;
+        margin-top: 5px;
+    }
+
+    #include_items li {
+        font-size: 0.8em;
+    }
+
+    .available h5 {
+        font-size: 0.7em;
+    }
+
+    .title_info {
+        font-size: 1.1em;
+    }
+
+    .overall_info p {
+        font-size: 1.8em;
+    }
+
+    .user img {
+        min-width: 55px;
+    }
+
+    #rating {
+        font-size: 0.85em;
+    }
+
+    #submit_time {
+        display: block;
+    }
+
+    #mobile_setting {
+        padding-left: 0;
+    }
+
+    #post_by {
+        margin-bottom: 0;
+    }
+
+    #mobile_hide {
+        display: none;
     }
 } 
 

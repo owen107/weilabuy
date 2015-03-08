@@ -138,19 +138,19 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<h2 class="title_info">Other Items You May Also Like</h2>
+	<div class="row" id="also_like">
+		<h2 class="title_info"><i class="icon-smile"></i> Other Items You May Also Like</h2>
 		<flex-slider slide="item in similarItems track by $index" animation="slide" animation-loop="false"
-		item-width="210" item-margin="5" min-items="1" max-items="5">
-		    <item-info></item-info>
+		item-width="196" item-margin="5" min-items="1" max-items="5" controlNav="false">
+		    <item></item>
 		</flex-slider>
 	</div>
 
-	<div class="row">
-		<h2 class="title_info">Customers Who Viewed This Item Also Viewed</h2>
+	<div class="row" id="also_viewed">
+		<h2 class="title_info"><i class="icon-eye-open"></i> Customers Who Viewed This Item Also Viewed</h2>
 		<flex-slider slide="item in alsoViewed track by $index" animation="slide" animation-loop="false"
-		item-width="210" item-margin="5" min-items="1" max-items="5">
-		   <div item-info></div>
+		item-width="196" item-margin="5" min-items="1" max-items="5" controlNav="false">
+		   <div item></div>
 		</flex-slider>
 	</div>
 
@@ -165,17 +165,17 @@
 		<div class="comments" ng-repeat="review in reviews.reviews">
 			<p class="comment_title">{{review.title}}</p>
 			<div class="user row">
-				<div class="small-1 columns">
+				<div class="small-3 columns">
 					<img src="img/user_avatar.png" alt="Photo for user" />
 				</div>
-				<div class="small-8">
+				<div class="small-9 columns" id="mobile_setting">
 					<p id="rating">Customer Rating: <i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i> <span>{{review.rating}}.0</span></p>
 					<p id="post_by" ng-repeat="item in review.reviewer">Post by: <span id="username">{{item.name}}</span> on <span id="submit_time">{{review.submissionTime | date:'EEEE, MMM d, y, h:mma'}}</span></p>
 				</div>
 				<div class="small-12 columns comment_content">
 					<p><i class="icon-comment"></i> {{review.comment}}</p>
 					<div class="small-8 columns">
-						<span>Was this reviews helpful?</span>
+						<span id="mobile_hide">Was this reviews helpful?</span>
 						<button id="like" ng-click="incrementLike()"><i class="icon-thumbs-up-alt"></i> {{like}}</button>
 						<button id="not_like" ng-click="incrementNotLike()"><i class="icon-thumbs-down-alt"></i> {{notLike}}</button>
 					</div>
