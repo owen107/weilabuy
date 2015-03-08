@@ -139,7 +139,7 @@
 	</div>
 
 	<div class="row">
-		<h2>Other Items You May Also Like</h2>
+		<h2 class="title_info">Other Items You May Also Like</h2>
 		<flex-slider slide="item in similarItems track by $index" animation="slide" animation-loop="false"
 		item-width="210" item-margin="5" min-items="1" max-items="5">
 		    <item-info></item-info>
@@ -147,7 +147,7 @@
 	</div>
 
 	<div class="row">
-		<h2>Customers Who Viewed This Item Also Viewed</h2>
+		<h2 class="title_info">Customers Who Viewed This Item Also Viewed</h2>
 		<flex-slider slide="item in alsoViewed track by $index" animation="slide" animation-loop="false"
 		item-width="210" item-margin="5" min-items="1" max-items="5">
 		   <div item-info></div>
@@ -155,25 +155,41 @@
 	</div>
 
 	<div class="row">
-		<div class="overll_info">
-			<h2>Weila Buy Customer Reviews</h2>
-			<h4>Overall Customer Rating:</h4>
-			<h3>{{product.customerReviewAverage}} <span>({{product.customerReviewCount}} reviews)</span></h3>
+		<div class="overall_info">
+			<h2 class="title_info"><i class="icon-comments" id="reviews_icon"></i> Weila Buy Customer Reviews</h2>
+			<h4>Overall Customer Rating: </h4>
+			<p><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><span> {{product.customerReviewAverage}}</span></p>
+			<p id="reviews_count">({{product.customerReviewCount}} reviews)</p>		
 		</div>
-		<div class="row">
-			<div class="reviews" ng-repeat="review in reviews.reviews">
-				<h3>{{review.title}}</h3>
-				<div class="user">
+
+		<div class="comments" ng-repeat="review in reviews.reviews">
+			<p class="comment_title">{{review.title}}</p>
+			<div class="user row">
+				<div class="small-1 columns">
 					<img src="img/user_avatar.png" alt="Photo for user" />
-					<p>Customer Rating</p>
-					<h3><span></span> {{review.rating}}</h3>
-					<p ng-repeat="item in review.reviewer">Post by: {{item.name}} on <span>{{review.submissionTime | date:'EEEE, MMM d, y, h:mma'}}</span></p>
-					<h5>{{review.comment}}</h5>
 				</div>
+				<div class="small-8">
+					<p id="rating">Customer Rating: <i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i> <span>{{review.rating}}.0</span></p>
+					<p id="post_by" ng-repeat="item in review.reviewer">Post by: <span id="username">{{item.name}}</span> on <span id="submit_time">{{review.submissionTime | date:'EEEE, MMM d, y, h:mma'}}</span></p>
+				</div>
+				<div class="small-12 columns comment_content">
+					<p><i class="icon-comment"></i> {{review.comment}}</p>
+					<div class="small-8 columns">
+						<span>Was this reviews helpful?</span>
+						<button id="like" ng-click="incrementLike()"><i class="icon-thumbs-up-alt"></i> {{like}}</button>
+						<button id="not_like" ng-click="incrementNotLike()"><i class="icon-thumbs-down-alt"></i> {{notLike}}</button>
+					</div>
+					<div class="small-4 columns">
+						<button id="flag" class="right my_tooltip">
+							<i class="icon-flag"></i>
+							<span>Flag as inappropriate</span>
+						</button>
+					</div>
+				</div>	
 			</div>
-			<button ng-show="reviews.totalPages > reviews.currentPage" 
-				    ng-click="reviews.loadMore()"
-				    class="button info radius">Load More Reviews</button>			
 		</div>
+		<button ng-show="reviews.totalPages > reviews.currentPage" 
+			    ng-click="reviews.loadMore()"
+			    class="button small-12 columns" id="load_comment">Load More Reviews</button>			
 	</div>
 </div>

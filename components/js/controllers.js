@@ -85,6 +85,17 @@ ctrls.controller('ProductCtrl', function($scope, $routeParams, Bestbuy, MoreResu
         }
     }
 
+    $scope.like = 0;
+    $scope.notLike = 0;
+
+    $scope.incrementLike = function() {
+        $scope.like += 1;
+    }
+
+    $scope.incrementNotLike = function() {
+        $scope.notLike += 1;
+    }
+
 });
 
 ctrls.controller('StoreCtrl', function($scope, Bestbuy, MoreResults) {

@@ -425,7 +425,10 @@ Product Details Page
 }
 
 #manuf span:first-child:hover,
-.product_details .shipping p:hover {
+.product_details .shipping p:hover,
+#reviews_count:hover,
+#submit_time:hover,
+#username:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -587,6 +590,176 @@ Similiar Products Section
 /*****************************
 Comment Section
 *****************************/
+
+.title_info {
+    font-size: 1.5em;
+    color: #003481;
+    border-bottom: 1px solid #003481;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.overall_info {
+    margin-bottom: 10px;
+}
+
+.overall_info h4 {
+    font-size: 1.1em;
+    color: #878787;
+}
+
+.overall_info i,
+#rating i {
+    color: #FFCC00;
+}
+
+.overall_info p {
+    font-size: 2.3em;
+    color: #3A8BC0;
+    margin-bottom: 0;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+#reviews_count {
+    font-size: 0.7em;
+    font-weight: normal;
+    padding-left: 2px;
+}
+
+.comments {
+    padding: 20px 10px;
+    border-top: 1px dotted rgba(71, 171, 237, 0.7);
+    background: -webkit-linear-gradient(right top, rgba(71, 171, 237, 0.1), #fff); /* For Safari 5.1 to 6.0 */
+    background: -moz-linear-gradient(bottom left, rgba(71, 171, 237, 0.1), #fff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom left, rgba(71, 171, 237, 0.1), #fff); /* Standard syntax */  
+}
+
+.comments .comment_title {
+    color: #003481;
+    margin-bottom: 0.8rem;
+    font-size: 1.1em;
+}
+
+.comment_content p,
+.comments .comment_title {
+    font-family: 'Signika' sans-serif;
+}
+
+#rating {
+    margin-bottom: 0;
+    margin-top: 2px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#rating span {
+    color: #FF6600;
+}
+
+#post_by {
+    font-size: 0.85em;
+}
+
+#username {
+    color: #CF0000;
+    font-size: 0.83em;
+    font-weight: bold;
+}
+
+#submit_time {
+    color: #878787;
+    font-size: 0.8em;
+}
+
+.comment_content p {
+    margin: 10px 0;
+    font-size: 0.8em;
+    padding: 0 8px;
+}
+
+#reviews_icon {
+    color: #003481;
+}
+
+.comment_content span {
+    font-size: 0.8em;
+    color: #878787;
+    margin-right: 5px;
+}
+
+#like,
+#not_like,
+#flag {
+    font-size: 0.8em;
+    padding: 5px 8px;
+    margin-bottom: 0;
+    border: 1px solid #47ABED;
+}
+
+#like:hover,
+#not_like:hover,
+#flag:hover {
+    background: -webkit-linear-gradient(top, #fff, rgba(0, 0, 0, 0.1)); /* For Safari 5.1 to 6.0 */
+    background: -moz-linear-gradient(bottom , #fff, rgba(0, 0, 0, 0.1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom, #fff, rgba(0, 0, 0, 0.1)); /* Standard syntax */  
+}
+
+/* Tooltip */
+.my_tooltip {
+  position: relative;
+  opacity: 0.8;
+}
+
+.my_tooltip:hover {
+  opacity: 1;
+}
+
+.my_tooltip span {
+  background: #CF0000;
+  color: #f8f8f8;
+  bottom: 100%;
+  display: block;
+  left: -100px;
+  opacity: 0;
+  white-space: nowrap;
+  padding: 7px 15px;
+  margin-bottom: 5px;
+  pointer-events: none;
+  position: absolute;
+  border-radius: 5px;
+  box-shadow: none;
+  font-size: 13px;
+  -webkit-transform: translateY(25px);
+     -moz-transform: translateY(25px);
+      -ms-transform: translateY(25px);
+          transform: translateY(25px);
+  -webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+      -ms-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+}
+
+.my_tooltip span:before {
+    border: solid;
+    border-color: #CF0000 transparent;
+    border-width: 5px 5px 0 5px;
+    bottom: -5px;
+    content: "";
+    display: block;
+    left: 8.5em;
+    position: absolute;
+}
+
+.my_tooltip:hover span {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translateY(0px);
+     -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
+}
 
 /*****************************
 Store Search Fields
@@ -791,7 +964,10 @@ Store Search Results
 }
 
 #load_store,
-#load_comment {
+#load_comment,
+#like,
+#not_like,
+#flag {
    border-radius: 5px;
    font-family: 'Signika' sans-serif;
    margin-top: 5px;
@@ -804,6 +980,16 @@ Store Search Results
 #load_comment:hover {
    background: #47ABED;
    color: #fff;
+}
+
+#flag {
+    background: #CF0000;
+    color: #fff;
+    border: 2px solid #CF0000;
+}
+
+#flag:hover {
+    color: #CF0000;
 }
 
 /*****************************
