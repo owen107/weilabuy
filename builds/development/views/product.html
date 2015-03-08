@@ -1,53 +1,83 @@
-<div class="container" ng-cloak>
+<div class="product_details">
 	<div class="row">
-		<div class="category_lists">
+		<div class="breadcrumb">
 			<ul>
-				<li>Weila Buy</li>
-				<li ng-hide="$first" ng-repeat="category in product.categoryPath">{{category.name}}</li>
+				<li><a href="#/">Weila Buy</a> <span class="divider"></span></li>
+				<li ng-hide="$first" ng-repeat="category in product.categoryPath">
+					{{category.name}}
+					<span class="divider"></span>
+				</li>
+				<li>Product Info</li>
 			</ul>
 		</div>
 	</div>
 	<div class="row">
 		<div class="small-12 medium-4 columns">
-			<ul class="clearing-thumbs prod_img" data-clearing>
-              <li></li><a ng-href="{{product.largeFrontImage}}">
+			<div class="prod_img">
+              <a ng-href="{{product.largeFrontImage}}">
               	 <img data-caption="{{product.name}}" ng-src="{{product.largeImage}}">
-              </a></li>
-            </ul>
+              </a>
+            </div>
 		</div>
 		<div class="small-12 medium-8 columns">
 			<div class="short_info">
 				<h2>{{product.name}}</h2>
-				<p>By {{product.manufacturer}}</p>
+				<p id="manuf">
+					By <span>{{product.manufacturer}}</span>
+					<span class="reviews" ng-show="product.customerReviewAverage">
+						Customer Rating: <i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i> {{product.customerReviewAverage}} ({{product.customerReviewCount}} Reivews)
+					</span> 
+                    <span class="reviews" ng-hide="product.customerReviewAverage">
+                    	<i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i><i class="fi-star large"></i>
+                    	Be the first to write a review
+                    </span>
+				</p>
 				<p ng-hide="product.longDescription.length < product.shortDescription.length">{{product.longDescription}}</p>
 				<p ng-hide="product.longDescription.length > product.shortDescription.length">{{product.shortDescription}}</p>
+
 		    </div>
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" id="product_info">
 		<div class="small-12 medium-4 columns">
 			<div class="prod_price" >
-              <p>Model: <span>{{product.modelNumber}}</span> | SKU: <span>{{product.sku}}</span></p>
-              <h4>Customer Rating: {{product.customerReviewAverage}} ({{product.customerReviewCount}} Reivews)</h4>
-              <p ng-show="product.lowPriceGuarantee">PRICE <span>GURANTEE</span></p>
+              <p class="model"><span>Model: </span>{{product.modelNumber}} | <span>SKU: </span>{{product.sku}}</p>
+              <p ng-show="product.lowPriceGuarantee" class="price_match"><i class="fi-price-tag large"></i><span> price match</span> gurantee</p>
               <h3 ng-show="product.regularPrice===product.salePrice">{{product.regularPrice | currency}}</h3>
               <h3 ng-show="product.regularPrice > product.salePrice">{{product.salePrice | currency}}</h3>
               <div class="onsale" ng-show="product.regularPrice > product.salePrice">
               	<h4>ON SALE</h4>
-              	<h4>SAVE {{product.regularPrice - product.salePrice | currency}} <span>(Reg. {{product.regularPrice}})</span></h4>
+              	<h4><span>SAVE {{product.regularPrice - product.salePrice | currency}} </span>(Reg. {{product.regularPrice}})</h4>
               </div>
-              <a href="{{product.url}}" class="button radius">Buy the item</a>
-              <h3>FREE SHIPPING</h3>
-              <p ng-hide="product.freeShipping">on orders $35 and up</p>
+              <a href="{{product.url}}" class="button buy_item small-12 columns"><i class="icon-shopping-cart"></i> Buy the Item</a>
+              <div class="shipping">
+              	<h3><i class="icon-plane"></i> FREE SHIPPING</h3>
+                <p ng-hide="product.freeShipping">on orders $35 and up</p>
+              </div>        
             </div>
 		</div>
 		<div class="small-12 medium-8 columns">
 		     <div class="accordion__container">
+		     	<!-- .accordion__tab -->
 		        <div class="accordion__tab">
-		            <div class="accordion__tab-title" ng-click="openTab('tab1')">Product Specifications</div>
+		            <div class="accordion__tab-title" ng-click="openTab('tab1')">
+		            	<i class="icon-caret-down"></i>  What's Included</div>
 		            <div class="accordion__tab-content" ng-show="isOpenTab('tab1')">
-		            	<table>
+		            	<ul id="include_items">
+		            		<li ng-repeat="item in product.includedItemList">
+		            			{{item.includedItem}}
+		            		</li>
+		            	</ul>
+		            </div>
+		        </div>
+
+		        <!-- .accordion__tab -->
+		        <div class="accordion__tab">
+		            <div class="accordion__tab-title" ng-click="openTab('tab2')">
+		            	<i class="icon-caret-down"></i> Product Specifications</div>
+		            <div class="accordion__tab-content" id="change" ng-show="isOpenTab('tab2')">
+		            	<table id="specs">
 						  <thead>
 						    <tr>
 						      <th width="400">Specifications</th>
@@ -87,27 +117,18 @@
 						</table>
 		            </div>
 		        </div>
+		     
 		        <!-- .accordion__tab -->
 		        <div class="accordion__tab">
-		            <div class="accordion__tab-title" ng-click="openTab('tab2')">What's Included</div>
-		            <div class="accordion__tab-content" ng-show="isOpenTab('tab2')">
-		            	<ul>
-		            		<li ng-repeat="item in product.includedItemList">
-		            			{{item.includedItem}}
-		            		</li>
-		            	</ul>
-		            </div>
-		        </div>
-		        <!-- .accordion__tab -->
-		        <div class="accordion__tab">
-		            <div class="accordion__tab-title" ng-click="openTab('tab3')">Product Availability</div>
-		            <div class="accordion__tab-content" ng-show="isOpenTab('tab3')">
+		            <div class="accordion__tab-title" ng-click="openTab('tab3')">
+		            	<i class="icon-caret-down"></i>  Product Availability</div>
+		            <div class="accordion__tab-content available" ng-show="isOpenTab('tab3')">
 		            	<h5>
-		            		<span ng-show="product.onlineAvailability">Yes </span>
-		            		Shipping: {{product.onlineAvailabilityText}}
+		            		<span ng-show="product.onlineAvailability" class="icon-ok-sign"></span>
+		            		{{product.onlineAvailabilityText}}
 		            	</h5>
 		            	<h5>
-		            		<span ng-show="product.inStoreAvailability">Yes </span>
+		            		<span ng-show="product.inStoreAvailability" class="icon-ok-sign"></span>
 		            		{{product.inStoreAvailabilityText}} Select the nearest store to pickup
 		            	</h5>
 		            </div>

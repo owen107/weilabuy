@@ -345,28 +345,248 @@ Recommedation Page Layout
 }
 
 /*****************************
-Accordion
+Product Details Page
 *****************************/
 
-.accordion__container {
-    background: #eee;
-    border: 1px solid #ccc;
-    padding: 20px;
+.product_details {
+    padding-top: 90px;
 }
-.accordion__tab {
-    background: #aaa;
-    color: #fff;
-    border-bottom: 1px solid white;
+
+.product_details .breadcrumb ul {
+    list-style: none;
+    margin: 0 0 10px 0;
+    padding: 0;  
 }
+
+.product_details .breadcrumb li {
+    margin-right: 3px;
+    font-size: 0.9em;    
+}
+
+.product_details .breadcrumb li,
+.product_details .short_info h2,
 .accordion__tab-title {
-    background: #888;
-    padding: 5px;
+    font-family: 'Signika' sans-serif;
+}
+
+.product_details .breadcrumb a {  
+    color: #47ABED;
+}
+
+.product_details .breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.product_details .breadcrumb li,
+.product_details .breadcrumb .divider {
+    display: inline-block;
+}
+
+.product_details .breadcrumb .divider {
+    width: 0px;
+    height: 0px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #878787;
+    margin-left: 5px;
+}
+
+.product_details .prod_img {
+    padding-top: 30px;
+}
+
+.product_details .prod_img img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 140px;
+}
+
+.product_details .short_info h2 {
+    font-size: 1.8em;
+    color: #003481;
+    font-weight: 800;
+}
+
+.product_details .short_info p {
+    font-size: 0.95em;
+}
+
+#manuf {
+    font-style: italic;
+}
+
+#manuf span {
+    color: #CF0000;
+}
+
+#manuf span:first-child {
+    margin-right: 20px;
+}
+
+#manuf span:first-child:hover,
+.product_details .shipping p:hover {
+    text-decoration: underline;
     cursor: pointer;
 }
-.accordion__tab-content {
-    background: #999;
-    padding: 20px;
+
+#manuf span:not(:first-child) {
+    color: #003481;
+    font-style: normal;
+    font-size: 0.85em;
 }
+
+#manuf i {
+    color: #FFCC00;
+}
+
+.product_details .prod_price {
+    padding: 10px 2.5% 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.product_details .prod_price p {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.product_details .prod_price .model {
+    font-size: 0.8em;
+}
+
+.product_details .prod_price .model span,
+.product_details .prod_price .price_match span {
+    font-weight: bold;
+}
+
+.product_details .prod_price .price_match {
+    font-size: 1em;
+    color: #47ABED;
+    text-transform: uppercase;
+}
+
+.product_details .prod_price h3 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.product_details .onsale h4 {
+    font-size: 1.5em;
+    color: #FF6600;
+}
+
+.product_details .onsale h4:nth-child(2) {
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.product_details .onsale h4 span {
+    color: #CF0000;
+}
+
+.product_details .buy_item {
+    background: #47ABED;
+    border-radius: 5px;
+}
+
+.product_details .buy_item:hover {
+    background: #3A8BC0;
+}
+
+.product_details .shipping h3 {
+    font-size: 1.3em;
+    margin-bottom: 0;
+}
+
+.product_details .shipping p {
+    font-size: 0.8em;
+    color: #3A8BC0;
+}
+
+.accordion__container {
+    border: none;
+    width: 90%;
+}
+
+.accordion__tab,
+.available h5 {
+    color: #878787;
+}
+
+.accordion__tab:nth-child(3) {
+    border-bottom: 2px solid #878787;
+}
+
+.accordion__tab-title {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.accordion__tab-title i {
+    color: #CF0000;
+}
+
+.accordion__tab-title,
+.accordion__tab-content {
+    border-top: 2px solid #878787;
+} 
+
+.accordion__tab-content {
+    padding: 10px;
+}
+
+#change {
+    padding-top: 0;
+}
+
+#include_items {
+    margin-bottom: 0;
+}
+
+#include_items li {
+    color: #003481;
+    font-size: 1em;
+}
+
+#specs thead tr th {
+    color: #003481;
+} 
+
+.available h5 {
+    font-size: 0.9em;
+}
+.available span {
+    color: #009933;
+}
+
+#specs {
+    border: none;
+    margin-bottom: 0;
+}
+
+#specs thead,
+#specs tbody tr:nth-child(even) {
+    background: #fff;
+}
+
+#specs tbody tr:nth-child(odd) {
+    background: rgba(71, 171, 237, 0.1);
+}
+
+#product_info {
+    margin-bottom: 20px;
+}
+
+/*****************************
+Similiar Products Section
+*****************************/
+
+/*****************************
+Comment Section
+*****************************/
 
 /*****************************
 Store Search Fields
@@ -480,7 +700,8 @@ Store Search Results
 }
 
 .store:hover {
-    background: rgba(71, 171, 237, 0.2);
+    background: rgba(71, 171, 237, 0.1);
+    cursor: pointer;
 }
 
 .stores h5 {
@@ -672,7 +893,8 @@ Media Queries
         margin-top: 0;
     }
 
-    .search_store {
+    .search_store,
+    .product_details {
         padding: 10px 10px 0;
     }
 
@@ -686,6 +908,10 @@ Media Queries
     
     .search_store {
         padding: 80px 20px 0; 
+    }
+
+    .product_details {
+        padding: 80px 25px 0;
     }
 }
 
