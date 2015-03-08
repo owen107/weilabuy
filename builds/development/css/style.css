@@ -1292,6 +1292,10 @@ Media Queries
     #mobile_hide {
         display: none;
     }
+
+    .store {
+        height: 325px;
+    }
 } 
 
 
